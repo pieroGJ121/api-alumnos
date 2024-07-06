@@ -1,0 +1,18 @@
+org: pieroguerrero
+service: api-alumnos
+
+provider:
+  name: aws
+  runtime: python3.12
+  iam:
+    role: arn:aws:iam::879278144305:role/LabRole
+
+functions:
+  listar:
+    handler: ListarAlumnos.lambda_handler
+    events:
+      - http:
+          path: /alumnos/listar
+          method: post
+          cors: true
+          integration: lambda
